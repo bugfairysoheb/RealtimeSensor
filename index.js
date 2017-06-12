@@ -13,9 +13,6 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
-
-//usb or wifi connection to arduino
-
 app.get('/about', function(req, res){
   res.sendFile(__dirname + '/about.html');
 });

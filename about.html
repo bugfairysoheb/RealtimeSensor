@@ -1,1 +1,107 @@
-<h2>About page</h2>
+<!doctype html>
+<html>
+  <head>
+    <title>Real-Time Sensor Data</title>
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js" ></script>
+
+  </head>
+  <body>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+    <h2 style="text-align:center;">Live Chart</h2>
+    </div>
+    </div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+   <canvas id="myChart" ></canvas>
+<input id="start" class="btn btn-block btn-success" type="button" value="Start Live Streaming" onclick="start()">
+<input id="stop" style="display:none" class="btn btn-block btn-danger" type="button" value="Stop Streaming" onclick="stop()">
+
+</div>
+</div>
+  </body>
+
+  <script>
+var canvas = document.getElementById('myChart');
+var data = {
+    labels: [],
+    datasets: [
+        {
+            label: "Sample Data set",
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: "rgba(75,192,192,0.4)",
+            borderColor: "rgba(75,192,192,1)",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            showLines: true,
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "rgba(75,192,192,1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 5,
+            pointHitRadius: 10,
+            data: [],
+        }
+    ]
+};
+
+var i = 0;
+var refreshIntervalId;
+function adddata()
+{
+      if(i > 10)
+      { 
+        console.log("i: "+i);
+        console.log("I am inside the loop");
+        myLineChart.data.labels.splice(0,1);
+        myLineChart.data.datasets[0].data.splice(0,1);
+        myLineChart.update();
+        data.datasets[0].data.push(Math.random() * 100);
+        data.labels.push("label"+i);
+        myLineChart.update();
+      }
+      else{
+        data.datasets[0].data.push(Math.random() * 100);
+        data.labels.push("label"+i);
+        console.log("i: "+i);
+        myLineChart.update();
+      }
+      i++;
+
+}
+
+function start()
+{
+	refreshIntervalId = setInterval(adddata,1000);
+	document.getElementById("start").style.display = "none";
+	document.getElementById("stop").style.display = "block";
+}
+
+function stop()
+{
+	clearInterval(refreshIntervalId);
+	document.getElementById("start").style.display = "block";
+	document.getElementById("stop").style.display = "none";
+}
+
+var option = {
+  showLines: true
+};
+var myLineChart = Chart.Line(canvas,{
+  data:data,
+  options:option
+});
+
+</script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+</html>
