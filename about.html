@@ -3,7 +3,7 @@
   <head>
     <title>Real-Time Sensor Data</title>
     
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js" ></script>
@@ -14,10 +14,11 @@
     <div class="col-md-6 col-md-offset-3">
     <h2 style="text-align:center;">Live Chart</h2>
     </div>
+    
     </div>
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-   <canvas id="myChart" ></canvas>
+  <div class="col-md-8 col-md-offset-2">
+   <canvas id="myChart" ></canvas>  
 <input id="start" class="btn btn-block btn-success" type="button" value="Start Live Streaming" onclick="start()">
 <input id="stop" style="display:none" class="btn btn-block btn-danger" type="button" value="Stop Streaming" onclick="stop()">
 
@@ -32,7 +33,7 @@ var data = {
     datasets: [
         {
             label: "Sample Data set",
-            fill: false,
+            fill: true,
             lineTension: 0.1,
             backgroundColor: "rgba(75,192,192,0.4)",
             borderColor: "rgba(75,192,192,1)",
@@ -59,8 +60,35 @@ var i = 0;
 var refreshIntervalId;
 function adddata()
 {
-      if(i > 10)
+
+   var socket = io('/channel1');
+   var currentTime;
+
+    
+
+
+      if(i > 1)
       { 
+        
+        socket.on('live-data', function(msg) 
+        {
+        console.log("msg: "+msg);
+        console.log("i: "+i + ":" + msg);
+        console.log("I am inside the loop");
+        myLineChart.data.labels.splice(0,1);
+        myLineChart.data.datasets[0].data.splice(0,1);
+        myLineChart.update();
+        data.datasets[0].data.push(msg);
+        data.labels.push("label"+i);
+        myLineChart.update();
+
+
+
+        });
+
+
+
+/*
         console.log("i: "+i);
         console.log("I am inside the loop");
         myLineChart.data.labels.splice(0,1);
@@ -69,12 +97,27 @@ function adddata()
         data.datasets[0].data.push(Math.random() * 100);
         data.labels.push("label"+i);
         myLineChart.update();
+*/
+
+
       }
       else{
-        data.datasets[0].data.push(Math.random() * 100);
+
+        socket.on('live-data', function(msg) 
+        {
+           data.datasets[0].data.push(msg); 
+          data.labels.push("label"+i);
+          console.log("i: "+i);
+          myLineChart.update();
+        });
+
+
+/*
+        data.datasets[0].data.push(Math.random() * 100); 
         data.labels.push("label"+i);
         console.log("i: "+i);
         myLineChart.update();
+        */
       }
       i++;
 
@@ -102,6 +145,24 @@ var myLineChart = Chart.Line(canvas,{
   options:option
 });
 
+
 </script>
-<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+<script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+  <script>
+  $(function() {
+    /*
+    var socket = io('/channel1');
+    var currentTime;
+
+    socket.on('live-data', function(msg) 
+    {
+      //console.log("msg: "+msg);
+    });
+*/
+});
+  
+</script>
 </html>
