@@ -1,56 +1,811 @@
 <!doctype html>
-<html>
-  <head>
-    <title>Real-Time Sensor Data</title>
+<html lang="en">
     
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="/css/cover.css">
-<script src="/js/jquery.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-  </head>
-  <body>
-    
- <div class="site-wrapper">
+<head>
+        
+         <link rel="icon" type="image/png" href="/assets/img/logo.jpg">
 
-      <div class="site-wrapper-inner">
+        <title>Beatwear | Heart attack detection and alert system</title>
 
-        <div class="cover-container">
 
-          <div class="masthead clearfix">
-            <div class="inner">
-              <h3 class="masthead-brand">Cover</h3>
-              <nav>
-                <ul class="nav masthead-nav">
-                  <li class="active"><a href="#">Home</a></li>
-                  <li><a href="#">Features</a></li>
-                  <li><a href="#">Contact</a></li>
-                </ul>
-              </nav>
+        <link href="/assets/css/bootstrap.css" rel="stylesheet" />
+        <link href="/assets/css/rubick_pres.css" rel="stylesheet"/>
+        <!--     Fonts and icons     -->
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
+        <link href="/assets/css/fonts/pe-icon-7-stroke.css" rel="stylesheet">
+        <link href="/assets/css/fonts/Rubik-Fonts.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+       
+
+        <style>
+        iframe{
+    overflow:hidden;
+}
+
+            .section-header .separator {
+                margin: 0em auto 2em;
+            }
+            .space-50{
+                height: 50px;
+                width: 100%;
+                display: block;
+                content: "";
+            }
+            .section .parallax > img{
+                width: 100%;
+                min-width: 0;
+                min-height: 0;
+            }
+            .pattern-image:after{
+                opacity: .2;
+/*                 background: #111; */
+            }
+            .section-header h1{
+                text-shadow: -2px 2px 30px rgba(0, 0, 0, 0.25), -2px 4px 14px rgba(0, 0, 0, 0.1);
+            }
+            .section-header h5{
+                  text-shadow: 0px 0px 11px rgba(0, 0, 0, 0.3);
+            }
+            .section-header .content{
+                top: 42%;
+            }
+            .section-we-are-1 .title{
+                max-width: 960px;
+            }
+            .card .icon ~ h3{
+                margin-bottom: 10px;
+            }
+            .section-with-hover .project .content{
+                text-align: center;
+            }
+            .section-with-hover .project .over-area{
+                background: rgba(0, 0, 0, .83);
+            }
+            .section-clients-2{
+                padding: 6em 0 1em;
+            }
+            .section-clients-2 .nav-text li {
+                margin: 0 15px 10px 15px;
+            }
+            .section-contact-3 .contact-container .address-container{
+                width: 28%;
+                background-color: #FFFFFF;
+                height: 470px;
+                top: 50px;
+                padding: 20px;
+            }
+            .section-contact-3 .address{
+                margin-top: 40px;
+            }
+            .section-we-made-3 .content{
+                padding: 0 15px;
+                text-align: center;
+            }
+            .section-we-made-3 .over-area .content h3{
+                margin: 5px 0 20px;
+            }
+            .section-we-made-3 .over-area .content p{
+                font-size: .9em;
+                color: #898989;
+            }
+            .section-we-made-3 .over-area .content h5{
+                margin-bottom: 0px;
+                margin-top: 20px;
+            }
+
+            .btn-black{
+                letter-spacing: 1px;
+                margin-top: 20px;
+            }
+
+            .copyright a{
+                color: #FFFFFF;
+            }
+
+            .section-team-2 .team .member p {
+              font-size: .9em;
+              padding: 0 10px;
+            }
+
+            .card{
+                margin-bottom: 30px;
+            }
+            .section-with-hover .project .over-area.over-area-sm .content p {
+              font-size: .85em;
+            }
+            .section-with-hover .project .over-area.over-area-sm .content h4 {
+              font-size: 1.6em;
+            }
+            .logo{
+                display: block;
+                margin: 0 auto 10px;
+                width: 61px;
+                height: 61px;
+                border-radius: 50%;
+                border: 1px solid #333333;
+                overflow: hidden;
+            }
+            .logo img{
+                width: 100%;
+                height: 100%;
+            }
+            .loading .loading-container p {
+                font-size: 30px;
+                width: 220px;
+                margin: 0 auto;
+                margin-bottom: 30px;
+                height: 35px;
+            }
+            .loading .logo{
+                opacity: 0;
+                transition: all 0.9s;
+                -webkit-transition: all 0.9s;
+                -moz-transition: all 0.9s;
+            }
+            .loading .logo.visible{
+                opacity: 1;
+            }
+            .sharrre.btn{
+                color: #444444;
+                border-color: #444444;
+                font-weight: 400;
+            }
+            .address .col-md-6{
+                padding-right: 7px;
+                padding-left: 7px;
+            }
+            a.img-class{
+                opacity: 1;
+            }
+            a.img-class:hover{
+                opacity: .9;
+            }
+
+            .btn-lg{
+                padding: 14px 10px;
+            }
+
+            @media (max-width: 1200px){
+                .section-contact-3 .contact-container .address-container{
+                    height: 520px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+
+        <nav class="navbar navbar-default navbar-transparent navbar-fixed-top navbar-burger" role="navigation">
+            <!-- if you want to keep the navbar hidden you can add this class to the navbar "navbar-burger"-->
+            <div class="container">
+                <div class="navbar-header">
+                    <button id="menu-toggle" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar bar1"></span>
+                    <span class="icon-bar bar2"></span>
+                    <span class="icon-bar bar3"></span>
+                    </button>
+                    <a target="_blank" href="#" class="navbar-brand">
+                    BeatZwear<!-- top left one -->
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" >
+                    <ul class="nav navbar-nav navbar-right navbar-uppercase">
+                        <li class="social-links">
+                            <a href="#"> <!-- facebook -->
+                                <i class="fa fa-facebook-square"></i>
+                            </a>
+                            <a href="#"><!-- twitter -->
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                            <a href="#"> 
+                                <i class="fa fa-google-plus-square"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fa fa-dribbble"></i>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="#" data-scroll="true" data-id="#whoWeAre">
+                            About
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-scroll="true" data-id="#workflow">
+                            What We Do
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-scroll="true" data-id="#projects">
+                            Your live heart rate
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="#" data-scroll="true" data-id="#clients">
+                            Testimonials
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-scroll="true" data-id="#team">
+                            Team
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-scroll="true" data-id="#numbers">
+                            Numbers
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-scroll="true" data-id="#contact">
+                            Contact
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
             </div>
-          </div>
-
-          <div class="inner cover">
-            <h1 class="cover-heading">Cover your page.</h1>
-           
-            <p class="lead">
-              <a href="#" class="btn btn-lg btn-default">Learn more</a>
-            </p>
-          </div>
-
-          <div class="mastfoot">
-            <div class="inner">
-              <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+        </nav>
+        <div class="wrapper">
+            <div class="section section-header">
+                <div class="parallax pattern-image">
+                    <img src="/assets/img/beatswear.jpg"/>
+<!--                     <img src="//assets/img/header6.jpg"/> -->
+                   <div class="container">
+                        <div class="content">
+                            <h1>BeatZwear</h1>
+                            <div class="separator-container">
+                                <div class="separator line-separator">*</div>
+                            </div>
+                            <h5>Heart sensor</h5>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" data-scroll="true" data-id="#whoWeAre" class="scroll-arrow hidden-xs hidden-sm">
+                <i class="fa fa-angle-down"></i>
+                </a>
             </div>
-          </div>
+            <div class="section section-we-are-1" id="whoWeAre">
+                 <div class="text-area">
+                    <div class="container">
+                        <div class="row">
+                            <div class="title" id="animationTest">
+                                <h2>About BeatZwear</h2>
+                                <div class="separator-container">
+                                    <div class="separator line-separator">*</div>
+                                </div>
+                                <p class="large">
+                                    BeatZwear is a startup that creates design tools that make the sensor process faster and easier. We love the heart and care deeply for how users interact with a digital product. We power businesses and individuals to create better hearts around the world.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card add-animation animation-2">
+                                        <img alt="..." src="/assets/img/Sensor pic.jpg" />
+                                    </div>
+                                    <div class="card add-animation animation-4">
+                                        <img alt="..." src="/assets/img/pic6.jpg" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card add-animation animation-1">
+                                        <img alt="..." src="/assets/img/pic11.jpg"/>
+                                    </div>
+                                    <div class="card add-animation animation-3">
+                                        <img alt="..." src="/assets/img/pic1.jpg"/>
+                                    </div>
+                                    <div class="card add-animation animation-2">
+                                        <img alt="..." src="/assets/img/pic9.jpg"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card add-animation animation-3">
+                                        <img alt="..." src="/assets/img/pic2.jpg"/>
+                                    </div>
+                                     <div class="card add-animation animation-1">
+                                        <img alt="..." src="/assets/img/pic4.jpg"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section section-we-do-2" id="workflow" style="display:none;">
+                <div class="container">
+                    <div class="row">
+                        <div class="title add-animation">
+                            <h2>What we do</h2>
+                            <div class="separator-container">
+                                <div class="separator line-separator">*</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card add-animation animation-1">
+                                <div class="icon">
+                                    <i class="pe-7s-tools"></i>
+                                </div>
+                                <h3>Create UI Tools</h3>
+                                <p>We have created the tools that will help you in your next design project. From plugins to complex kits, we've got you covered in all areas regarding front-end development. </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card add-animation animation-2">
+                                <div class="icon">
+                                    <i class="pe-7s-gift"></i>
+                                </div>
+                                <h3>Share Freebies</h3>
+                                <p>Everything that we used to create our platform can be downloaded for free and guess what, people love free stuff. People have already trusted and used them in thousands of sites.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card add-animation animation-3">
+                                <div class="icon">
+                                    <i class="pe-7s-rocket"></i>
+                                </div>
+                                <h3>Power Hackathons</h3>
+                                <p>We've sponsored many hackathons around the world with the tools that they need to make awesome web applications. We like to help where we can, and our tools go hand in hand with startups. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        </div>
-
-      </div>
-
+ <div class="section section-we-made-3" id="projects">
+                <div class="container">
+                    <div class="row">
+                   
+    <iframe src="/about" frameborder="0" scrolling="no" style="height: 600px; overflow:hidden; width: 100%"></iframe>
+                            
     </div>
 
-<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    
+    </div>
+
+                </div>
+                <!-- Add Content -->
+            </div>
 
 
-  </body>
+
+            <div class="section section-clients-2" id="clients">
+                <div class="container">
+                    <div class="title add-animation">
+                        <h2>What people think...</h2>
+                        <div class="separator-container">
+                            <div class="separator line-separator">*</div>
+                        </div>
+                    </div>
+                    <div class="tab-content quotes add-animation animation-2">
+                        <div class="tab-pane active" id="sony">
+                            <p class="large">
+                                Hey BeatZwear team. Absolutely love your work! It's a God-send for a old man like me who doesn't know his pulse! Keep up the awesome work! Ed
+                            </p>
+                        </div>
+
+                        <div class="tab-pane" id="canon">
+                            <p class="large">Hello there, My Name is Abhi Khatri. You're simply awesome. I would love to contact you. I'm a new customer but everytime I checkout your stuff it gives me idea how to improve my pulses. Keep it up :)</p>
+                        </div>
+
+                        <div class="tab-pane" id="samsung">
+                            <p class="large">
+                                Finding a website with a vast purpose is always inspiring to continue front web development. But you did Magic my friends. Keep going and be sure if there is a donation, I'm in. Thanks for your daily hardworking. hope to meet u guys one day.
+                            </p>
+                        </div>
+
+                        <div class="tab-pane" id="intel">
+                            <p class="large">Hi, your site and all the stuff on it looks simply awesome, thank's for sharing. Love this. Greetings from Germany!</p>
+                        </div>
+                    </div>
+                    <ul class="nav nav-text list-logos add-animation animation-2" role="tablist">
+                        <li class="active">
+                            <a href="index.html#sony" role="tab" data-toggle="tab">
+                                <h3 class="big-text">Edwin Rede</h3>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.html#canon" role="tab" data-toggle="tab">
+                                <h3 class="big-text">Abhi Khatri</h3>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.html#samsung" role="tab" data-toggle="tab">
+                                <h3 class="big-text">Fars Kid</h3>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.html#intel" role="tab" data-toggle="tab">
+                                <h3 class="big-text">Kolodziej Nikolai</h3>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section section-team-2" id="team">
+                <div class="container">
+                    <div class="text-area">
+                        <div class="title add-animation">
+                            <h2>Meet our Team</h2>
+                            <div class="separator-container">
+                                <div class="separator line-separator">*</div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="team">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="member add-animation animation-1">
+                                    <img class="img-circle" src="/assets/img/alaa.jpg"/>
+                                    <div class="description">
+                                        <h3 class="big-text">Alaa H. Dawod </h3>
+                                        <br>
+                                        <p class="small-text">Alaa is one of the co-founders and takes care of growth, product development and partnerships. She is analytical, driven and adapts easily to new conditions, while trying to keep everyone on track.
+                                        </p>
+                                    </div>
+                           <!--wtf is this? linkdn profile -->         <div class="social-buttons hidden-xs">
+                                       <a target="_blank" href="#" class="btn btn-social btn-twitter btn-simple"><i class="fa fa-twitter"></i></a>
+                                        <a target="_blank" href="#" class="btn btn-social btn-linkedin btn-simple"><i class="fa fa-linkedin-square"></i></a>     <a target="_blank" href="https://www.facebook.com/AlaaHDawod" class="btn btn-social btn-facebook btn-simple"><i class="fa fa-facebook-square"></i></a>                                   </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="member add-animation animation-2">
+                                    <img class="img-circle" src="/assets/img/andres.jpg"/>
+                                    <div class="description">
+                                        <h3 class="big-text">Andres Aburto </h3>
+                                        <br>
+                                        <p class="small-text">Andres is the person behind our social media channels, she takes care of our users' community and communication. She is ambitious, hard-working, instantly likeable and fun to be around.
+                                        </p>
+                                    </div>
+                                    <div class="social-buttons hidden-xs">
+                                        <a target="_blank" href="#" class="btn btn-social btn-twitter btn-simple"><i class="fa fa-twitter"></i></a>
+                                         <a target="_blank" href="#" class="btn btn-social btn-linkedin btn-simple"><i class="fa fa-linkedin-square"></i></a>
+                                         <a target="_blank" href="https://www.facebook.com/andres.aburto.v" class="btn btn-social btn-facebook btn-simple"><i class="fa fa-facebook-square"></i></a>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="member add-animation animation-3">
+                                    <img class="img-circle" src="/assets/img/courtney.jpg"/>
+                                    <div class="description">
+                                        <h3 class="big-text">Courtney Parker</h3>
+                                        <br>
+                                        <p class="small-text">Courtney is one of the co-founders and drives the technical strategy of the platform, customer support and brand. He is level-headed, smart and with a taste for simple, aesthetic design.</p>
+                                    </div>
+                                    <div class="social-buttons hidden-xs">
+                                        <a target="_blank" href="https://www.facebook.com/courtney.parker.526438" class="btn btn-social btn-facebook btn-simple"><i class="fa fa-facebook-square"></i></a>
+                                        <a target="_blank" href="#" class="btn btn-social btn-twitter btn-simple"><i class="fa fa-twitter"></i></a>
+                                        <a target="_blank" href="#" class="btn btn-social btn-linkedin btn-simple"><i class="fa fa-linkedin-square"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="member add-animation animation-4">
+                                    <img class="img-circle" src="/assets/img/Evan.jpg"/>
+                                    <div class="description">
+                                        <h3 class="big-text">Evan Bosdachin</h3>
+                                        <br>
+                                        <p class="small-text">Evan is the guy responsible for keeping the platform in check, improving its functionality and adding new features. He is driven, always open for learning more, friendly and a fan of Ruby on Rails.
+                                        </p>
+                                    </div>
+
+                                    <div class="social-buttons hidden-xs">
+                                       <a target="_blank" href="#" class="btn btn-social btn-twitter btn-simple"><i class="fa fa-twitter"></i></a>
+                                        <a target="_blank" href="#" class="btn btn-social btn-linkedin btn-simple"><i class="fa fa-linkedin-square"></i></a>
+                                        <a target="_blank" href="https://www.facebook.com/evan.bosdachin" class="btn btn-social btn-facebook btn-simple"><i class="fa fa-facebook-square"></i></a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="member add-animation animation-4">
+                                    <img class="img-circle" src="/assets/img/kyler.jpg"/>
+                                    <div class="description">
+                                        <h3 class="big-text">Kyler Cordeiro</h3>
+                                        <br>
+                                        <p class="small-text">Evan is the guy responsible for keeping the platform in check, improving its functionality and adding new features. He is driven, always open for learning more, friendly and a fan of Ruby on Rails.
+                                        </p>
+                                    </div>
+
+                                    <div class="social-buttons hidden-xs">
+                                       <a target="_blank" href="#" class="btn btn-social btn-twitter btn-simple"><i class="fa fa-twitter"></i></a>
+                                        <a target="_blank" href="#" class="btn btn-social btn-linkedin btn-simple"><i class="fa fa-linkedin-square"></i></a>
+                                        <a target="_blank" href="https://www.facebook.com/kyler.cordeiro" class="btn btn-social btn-facebook btn-simple"><i class="fa fa-facebook-square"></i></a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="member add-animation animation-4">
+                                    <img class="img-circle" src="/assets/img/Soheb.jpg"/>
+                                    <div class="description">
+                                        <h3 class="big-text">Soheb Malbarwala</h3>
+                                        <br>
+                                        <p class="small-text">Evan is the guy responsible for keeping the platform in check, improving its functionality and adding new features. He is driven, always open for learning more, friendly and a fan of Ruby on Rails.
+                                        </p>
+                                    </div>
+
+                                    <div class="social-buttons hidden-xs">
+                                       <a target="_blank" href="#" class="btn btn-social btn-twitter btn-simple"><i class="fa fa-twitter"></i></a>
+                                        <a target="_blank" href="#" class="btn btn-social btn-linkedin btn-simple"><i class="fa fa-linkedin-square"></i></a>
+                                        <a target="_blank" href="https://www.facebook.com/suhaibisma3eel" class="btn btn-social btn-facebook btn-simple"><i class="fa fa-facebook-square"></i></a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section section-numbers-1" id="numbers">
+                <div class="container">
+                    <div class="text-area">
+                        <div class="title add-animation">
+                            <h2>Numbers don't lie</h2>
+                            <div class="separator-container">
+                                <div class="separator line-separator">*</div>
+                            </div>
+                            <p>"Started from the bottom now we're here" - Drake </p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4">
+                            <div class="card card-plain add-animation animation-1">
+                                <h3>Users</h3>
+                                <h5>Businesses and Professionals</h5>
+                                <div class="number">
+                                    116.000+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <div class="card card-plain add-animation animation-2">
+                                <h3>Downloads</h3>
+                                <h5>Freebies, Templates & UI Kits</h5>
+                                <div class="number" >
+                                    186.000+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <div class="card card-plain add-animation animation-3">
+                                <h3>Countries</h3>
+                                <h5>Where we made sponsorships</h5>
+                                <div class="number" >
+                                    14
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section section-contact-3" id="contact">
+                <div class="contact-container">
+                    <div class="address-container add-animation animation-1">
+                        <div class="address">
+                            <h4>Where to meet ?</h4>
+                            <p class="text-gray">
+                                University of Victoria<br>
+                                Victoria, BC, Canada
+                            </p>
+                            <h4>Want to say hello?</h4>
+                            <a target="_blank" href="#" class="btn btn-black btn-contact">
+                                CONTACT US <i class="fa fa-paper-plane"></i>
+                            </a> <!-- beatswear contact page -->
+                            <h4>Thank you for x number of shares!</h4><!-- Please share our website-->
+
+
+                            <div class="col-md-6">
+                                 <button id="facebook" class="btn btn-lg btn-contact btn-block">
+                                     <i class="fa fa-facebook-square"></i> Facebook
+                                 </button>
+                            </div>
+                            <div class="col-md-6">
+                                <button id="twitter" class="btn btn-lg btn-contact btn-block">
+                                    <i class="fa fa-twitter"></i> Twitter
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div  class="map">
+                        <img src="/assets/img/maps_bg.jpg" width="100%" />
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer footer-color-black">
+                <div class="container">
+                    <nav class="pull-left">
+                       
+                    </nav>
+                    <div class="social-area pull-right">
+                        <a class="btn btn-social btn-facebook btn-simple" href="#"><!-- beatswear facebook page -->
+                            <i class="fa fa-facebook-square"></i>
+                        </a>
+                        <a class="btn btn-social btn-twitter btn-simple" href="#"> <!-- beatswear twitter page -->
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a class="btn btn-social btn-pinterest btn-simple" href="#"><!-- beatswear google plus page -->
+                            <i class="fa fa-google-plus-square"></i>
+                        </a>
+                      
+                    </div>
+                    <div class="copyright">
+                        &copy; 2017 <a target="_blank" href="engr.uvic.ca/~sebo"> BeatZwear</a></a>
+                    </div>
+                </div>
+            </footer>
+
+
+        </div> <!-- end wrapper -->
+    </body>
+    <!--   core js files    -->
+    <script src="/assets/js/jquery-1.11.2.min.js" type="text/javascript"></script>
+    <script src="/assets/js/bootstrap.js" type="text/javascript"></script>
+    <!--   file for adding vertical points where we activate the elements animation   -->
+    <script type="text/javascript" src="/assets/js/jquery.waypoints.min.js"></script>
+    <!--  js library for devices recognition -->
+    <script type="text/javascript" src="/assets/js/modernizr.js"></script>
+    <!--  script for google maps   -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+   <!--   file where we handle all the script from the Rubik page   -->
+    <script type="text/javascript" src="/assets/js/rubick_pres.js"></script>
+
+    
+
+   
+  <script>
+var canvas = document.getElementById('myChart');
+var data = {
+    labels: [],
+    datasets: [
+        {
+            label: "Sample Data set",
+            fill: true,
+            lineTension: 0.1,
+            backgroundColor: "rgba(75,192,192,0.4)",
+            borderColor: "rgba(75,192,192,1)",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            showLines: true,
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "rgba(75,192,192,1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 5,
+            pointHitRadius: 10,
+            data: [],
+        }
+    ]
+};
+
+var i = 0;
+var refreshIntervalId;
+function adddata()
+{
+
+   var socket = io('/channel1');
+   var currentTime;
+
+    
+
+
+      if(i > 1)
+      { 
+        
+        socket.on('live-data', function(msg) 
+        {
+        console.log("msg: "+msg);
+        console.log("i: "+i + ":" + msg);
+        console.log("I am inside the loop");
+        myLineChart.data.labels.splice(0,1);
+        myLineChart.data.datasets[0].data.splice(0,1);
+        myLineChart.update();
+        data.datasets[0].data.push(msg);
+        data.labels.push("label"+i);
+        myLineChart.update();
+
+
+
+        });
+
+
+
+/*
+        console.log("i: "+i);
+        console.log("I am inside the loop");
+        myLineChart.data.labels.splice(0,1);
+        myLineChart.data.datasets[0].data.splice(0,1);
+        myLineChart.update();
+        data.datasets[0].data.push(Math.random() * 100);
+        data.labels.push("label"+i);
+        myLineChart.update();
+*/
+
+
+      }
+      else{
+
+        socket.on('live-data', function(msg) 
+        {
+           data.datasets[0].data.push(msg); 
+          data.labels.push("label"+i);
+          console.log("i: "+i);
+          myLineChart.update();
+        });
+
+
+/*
+        data.datasets[0].data.push(Math.random() * 100); 
+        data.labels.push("label"+i);
+        console.log("i: "+i);
+        myLineChart.update();
+        */
+      }
+      i++;
+
+}
+
+function start()
+{
+  refreshIntervalId = setInterval(adddata,1000);
+  //adddata();
+  document.getElementById("start").style.display = "none";
+  document.getElementById("stop").style.display = "block";
+}
+
+function stop()
+{
+  clearInterval(refreshIntervalId);
+  document.getElementById("start").style.display = "block";
+  document.getElementById("stop").style.display = "none";
+}
+
+var option = {
+  showLines: true
+};
+var myLineChart = Chart.Line(canvas,{
+  data:data,
+  options:option
+});
+
+
+</script>
+
+<script src="/socket.io/socket.io.js"></script>
+
+  <script>
+  $(function() {
+    /*
+    var socket = io('/channel1');
+    var currentTime;
+
+    socket.on('live-data', function(msg) 
+    {
+      //console.log("msg: "+msg);
+    });
+*/
+});
+  
+</script>
+
 </html>
